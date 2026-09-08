@@ -248,7 +248,7 @@ impl<'py> FromPyObject<'_, 'py> for BigInt {
     type Error = PyErr;
 
     #[cfg(feature = "experimental-inspect")]
-    const INPUT_TYPE: PyStaticExpr = PyInt::TYPE_HINT;
+    const INPUT_TYPE: PyStaticExpr = PyInt::INPUT_TYPE;
 
     fn extract(ob: Borrowed<'_, 'py, PyAny>) -> Result<BigInt, Self::Error> {
         // fast path - checking for subclass of `int` just checks a bit in the type object
@@ -310,7 +310,7 @@ impl<'py> FromPyObject<'_, 'py> for BigUint {
     type Error = PyErr;
 
     #[cfg(feature = "experimental-inspect")]
-    const INPUT_TYPE: PyStaticExpr = PyInt::TYPE_HINT;
+    const INPUT_TYPE: PyStaticExpr = PyInt::INPUT_TYPE;
 
     fn extract(ob: Borrowed<'_, 'py, PyAny>) -> Result<BigUint, Self::Error> {
         // fast path - checking for subclass of `int` just checks a bit in the type object

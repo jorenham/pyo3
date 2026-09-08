@@ -1,4 +1,6 @@
 use super::any::PyAnyMethods;
+#[cfg(feature = "experimental-inspect")]
+use crate::inspect::{type_hint_identifier, PyStaticExpr};
 use crate::{ffi, instance::Bound, IntoPyObject, PyAny, Python};
 #[cfg(RustPython)]
 use crate::{
@@ -35,6 +37,9 @@ pyobject_native_type_core!(
 );
 
 impl PyInt {
+    #[cfg(feature = "experimental-inspect")]
+    pub(crate) const INPUT_TYPE: PyStaticExpr = type_hint_identifier!("typing", "SupportsIndex");
+
     /// Creates a new Python int object.
     ///
     /// Panics if out of memory.
